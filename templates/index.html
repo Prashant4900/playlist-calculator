@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Meta tags -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+      name="viewport"
+    />
+    <meta name="viewport" content="width=device-width" />
+    <meta
+      name="description"
+      content="Get the total length/duration of a YouTube playlist by passing its link as input. You get the time required to watch that playlist at different speeds."
+    />
+
+    <!-- Favicon and title -->
+    <link
+      rel="icon"
+      href="../static/fevicon.png"
+    />
+    <title>YouTube Playlist Calculator</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+
+  <body class="bg-gray-800">
+    <!-- Navbar -->
+    {% include 'navbar.html' %}
+
+    <!-- Main Body -->
+    <main class="max-w-container mx-auto">
+      <div class="md:container md:mx-auto xs:px-5 sm:px-7 md:px-10 px-20 my-5">
+        <!-- Display Headline -->
+        <h2 class="text-center text-2xl text-white font-semibold">
+          Find the length of any YouTube Playlist:
+        </h2>
+
+        <!-- Search Box -->
+        {% include 'search.html' %}
+
+        <p class="text-white text-xs">
+          You can enter a youtube playlist link!
+        </p>
+        <p class="text-white text-xs">
+          This only works with playlists with upto 50 videos. 
+          <!-- Need more than that?
+          <span
+            ><a
+              class="text-blue-200"
+              href="https://colab.research.google.com/drive/1D0nbJVcFMHmQyNFVpoL65LOUiejA-bAc"
+              target="_blank"
+              >Click here.</a
+            ></span
+          > -->
+        </p>
+
+        <!-- Line Break -->
+        <hr class="my-3" />
+
+        <!-- Error Box -->
+        <div class="text-white">
+          {% if error %}
+            <p class="text-red-500 font-bold text-center text-xs">{{ error }}</p>
+          {% endif %}
+        </div>
+
+        <!-- Result Box -->
+        <div class="text-white" s>
+          <ul>
+            {% if display_text %}
+              {% for key, value in display_text.items() %}
+                <li class="my-2 text-sm">{{ key + " : " + value | safe }}</li>
+              {% endfor %}
+            {% endif %}
+          </ul>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    {% include 'footer.html' %}
+  </body>
+</html>
