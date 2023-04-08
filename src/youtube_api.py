@@ -25,7 +25,7 @@ def validate_id(playlist_id):
         >>> validate_id('PL4cUxeGkcC9gcy9lrvMJ75z9maRw4byYp')
         True
     """
-
+    
     url = f'{YOUTUBE_PLAYLIST_API_URL}?part=snippet&maxResults=1&playlistId={playlist_id}&key={YOUTUBE_API_KEY}'
     try:
         response = requests.get(url)
@@ -105,7 +105,7 @@ def video_ids_to_durations(video_ids):
     total_duration = 0
 
     for video_id in video_ids:
-        url = f'{YOUTUBE_VIDEO_API_URL}?key={YOUTUBE_API_KEY}&id={video_id}&part=contentDetails'
+        url = f'{YOUTUBE_VIDEO_API_URL}?key={YOUTUBE_API_KEY}&id={video_id}&part=contentDetails&fields=items(contentDetails(duration))'
         try:
             response = requests.get(url)
             response_json = response.json()
