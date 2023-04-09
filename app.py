@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, Response, render_template, request
 from src.youtube_api import get_playlist_id, playlist_to_video_ids, video_ids_to_durations
 from src.utils import seconds_to_days_with_x_times
 
@@ -28,6 +28,13 @@ def index():
             'At 2.00x': seconds_to_days_with_x_times(durations, 2.00)
         }
         return render_template('index.html', display_text=display_text)
+
+
+@app.route('/ads.txt')
+def static_from_root_google():
+    return Response(
+        'google.com, pub-8291423818234072, DIRECT, f08c47fec0942fa0',
+        mimetype='text/plain')
 
 if __name__ == '__main__':
     app.run(debug=False, use_reloader=True)
