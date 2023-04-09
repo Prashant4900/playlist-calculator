@@ -30,6 +30,18 @@ def index():
         return render_template('index.html', display_text=display_text)
 
 
+@app.route("/healthz", methods=['GET', 'POST'])
+def healthz():
+    return "Success", 200
+
+
+@app.route('/.well-known/brave-rewards-verification.txt')
+def static_from_root_brave():
+    return Response(
+        'This is a Brave Rewards publisher verification file.\n\nDomain: yt-playlist.vercel.app\nToken: e78cf498ba04f973be338d5e8d07f0bbe8dc4af4f4d83849b5f706456ae78104',
+        mimetype='text/plain')
+
+
 @app.route('/ads.txt')
 def static_from_root_google():
     return Response(
