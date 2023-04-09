@@ -15,23 +15,35 @@
     />
 
     <!-- Favicon and title -->
-    <link
-      rel="icon"
-      href="../static/fevicon.png"
-    />
+    <link rel="icon" href="../static/fevicon.png" />
     <title>YouTube Playlist Calculator</title>
 
     <style>
       #main {
         padding: 0px 10px;
       }
-    
-    @media (min-height: 768px) {
-    #main {
-        padding: 0px 35px;
-    }
-}
+
+      @media (min-height: 768px) {
+        #main {
+          padding: 0px 35px;
+        }
+      }
     </style>
+
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-7Z4DYC4KQL"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-7Z4DYC4KQL");
+    </script>
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -52,11 +64,9 @@
         <!-- Search Box -->
         {% include 'search.html' %}
 
+        <p class="text-white text-xs">You can enter a youtube playlist link!</p>
         <p class="text-white text-xs">
-          You can enter a youtube playlist link!
-        </p>
-        <p class="text-white text-xs">
-          This only works with playlists with upto 50 videos. 
+          This only works with playlists with upto 50 videos.
           <!-- Need more than that?
           <span
             ><a
@@ -74,18 +84,16 @@
         <!-- Error Box -->
         <div class="text-white">
           {% if error %}
-            <p class="text-red-500 font-bold text-center text-xs">{{ error }}</p>
+          <p class="text-red-500 font-bold text-center text-xs">{{ error }}</p>
           {% endif %}
         </div>
 
         <!-- Result Box -->
         <div class="text-white" s>
           <ul>
-            {% if display_text %}
-              {% for key, value in display_text.items() %}
-                <li class="my-2 text-sm">{{ key + " : " + value | safe }}</li>
-              {% endfor %}
-            {% endif %}
+            {% if display_text %} {% for key, value in display_text.items() %}
+            <li class="my-2 text-sm">{{ key + " : " + value | safe }}</li>
+            {% endfor %} {% endif %}
           </ul>
         </div>
       </div>
