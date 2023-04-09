@@ -30,4 +30,4 @@ def index():
         return render_template('index.html', display_text=display_text)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False, use_reloader=True)
